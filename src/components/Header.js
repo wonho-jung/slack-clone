@@ -10,7 +10,9 @@ import { auth } from "../firebase";
 const Header = () => {
   const [user] = useAuthState(auth);
   console.log(user);
-  const logout = () => {};
+  const logout = () => {
+    auth.signOut();
+  };
   return (
     <HeaderContainer>
       <HeaderLeft>
@@ -19,6 +21,7 @@ const Header = () => {
           alt={user?.displayName}
           onClick={logout}
         />
+        <h5>Signout</h5>
         <AccessTimeIcon />
       </HeaderLeft>
 
@@ -75,6 +78,9 @@ const HeaderLeft = styled.div`
   > .MuiSvgIcon-root {
     margin-left: auto;
     margin-right: 30px;
+  }
+  > h5 {
+    margin-left: 10px;
   }
 `;
 const HeaderRignt = styled.div`
